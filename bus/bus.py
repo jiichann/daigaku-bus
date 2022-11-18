@@ -7,12 +7,14 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import datetime
+import json
+json_open = open('bus\linebot.json', 'r')
 
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.select import By
 
 
-# # try:
+# try:
 
 # Chromeを起動
 options = Options()
@@ -50,8 +52,6 @@ options = Options()
 #     #遷移後のURLを取得
 # cur_url = driver.current_url
 
-
-
 cur_url = "https://transfer.navitime.biz/showa-bus/extif/TransferSearchIF?startName=&goalName=&start=00291944&goal=00087910&device=pc"
 # requetsを使ってサイト情報を取得
 result = requests.get(cur_url)
@@ -66,12 +66,8 @@ for time in bs.find_all(class_ = "startGoalTime"):
     for eraser2 in bs.find_all(class_ = "goal"):
         eraser2.clear()
     
-
-    
-
-    # 開いているWebブラウザを閉じる
+# 開いているWebブラウザを閉じる
 # driver.quit()
-
 
 # finally:
 #     os.kill(driver.service.process.pid,signal.SIGTERM)
